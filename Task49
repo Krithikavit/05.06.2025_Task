@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #102537;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            width: 500px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00000030;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 100px;
+            
+        }
+
+        .button-row {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        button {
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Prime Number Generator</h2>
+        <table>
+            <tr>
+                <td>Start</td>
+                <td><input type="text" id="start"></td>
+            </tr>
+            <tr>
+                <td>End</td>
+                <td><input type="text" id="end"></td>
+            </tr>
+            <tr>
+                <td>Prime Number</td>
+                <td><textarea id="result" readonly></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-row">
+                    <button onclick="generatePrimes()">Generate</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function generatePrimes() {
+            let start = parseInt(document.getElementById("start").value);
+            let end = parseInt(document.getElementById("end").value);
+            let result = "";
+
+            for (let i = start; i <= end; i++) {
+                if (isPrime(i)) {
+                    result += i + " ";
+                }
+            }
+
+            document.getElementById("result").value = result.trim();
+        }
+    </script>
+</body>
+</html>
